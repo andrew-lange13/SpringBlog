@@ -18,4 +18,16 @@ public class MathController {
     public String subtract(@PathVariable int x, @PathVariable int y){
         return "Your subtraction equals " + (x-y);
     }
+
+    @GetMapping("/multiply/{x}/and/{y}")
+    @ResponseBody
+    public String multiply(@PathVariable int x, @PathVariable int y){
+        return "Your multiplication equals " + (x*y);
+    }
+
+    @GetMapping("/divide/{x}/by/{y}")
+    @ResponseBody
+    public String divide(@PathVariable int x, @PathVariable int y){
+        return "Your division equals " + (x/y);
+    }
 }
