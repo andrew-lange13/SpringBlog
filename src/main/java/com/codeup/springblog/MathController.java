@@ -12,4 +12,10 @@ public class MathController {
     public String add(@PathVariable int x, @PathVariable int y){
         return "Your addition equals " + (x+y);
     }
+
+    @GetMapping("/subtract/{x}/from/{y}")
+    @ResponseBody
+    public String subtract(@PathVariable int x, @PathVariable int y){
+        return "Your subtraction equals " + (x-y);
+    }
 }
