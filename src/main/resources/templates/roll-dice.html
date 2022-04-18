@@ -27,7 +27,10 @@
 	</a>
 </div>
 <div th:if="${guessedNumber != null}">
-	<h1 th:text="${guessedNumber}"></h1>
+	<h1>Your guess is <span th:text="${guessedNumber}"/></h1>
+	<h1>The correct number is <span th:text="${correctNum}"/></h1>
+	<h1 th:if="${guessedNumber} == ${correctNum}">You Win</h1>
+	<h1 th:if="${guessedNumber}!= ${correctNum}">You Lose</h1>
 
 </div>
 </body>
