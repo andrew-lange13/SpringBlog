@@ -14,7 +14,7 @@ public class HelloController {
 
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable String name, Model model) {
-        model.addAttribute("name", name);
+        model.addAttribute("enteredName", name);
         return "hello";
     }
 
