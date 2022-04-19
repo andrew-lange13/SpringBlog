@@ -11,6 +11,13 @@ import java.util.ArrayList;
 
 @Controller
 public class PostController {
+
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
+
     @GetMapping("/posts")
     public String posts(Model model){
         ArrayList<Post> postsIndex = new ArrayList<>();
