@@ -8,7 +8,7 @@
 <body>
 <header th:replace="partials::header"/>
 
-<div th:each="post : ${posts}">
+<div class="container-fluid" th:each="post : ${createdIndex}">
 	<h3 th:text="${post.title}"/>
 	<p th:text="${post.body}"/>
 </div>
