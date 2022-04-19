@@ -19,4 +19,10 @@ public class Post {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public Post(String title, String body){
+        this.title = title;
+        this.body = body;
+    }
+
 }
