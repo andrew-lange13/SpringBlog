@@ -1,7 +1,17 @@
 package com.codeup.springblog;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(nullable = false, unique = true)
     private String title;
+    @Column(nullable = false)
     private String body;
 
     public String getBody() {
@@ -20,9 +30,13 @@ public class Post {
         this.title = title;
     }
 
+    public Post(){
+
+    }
     public Post(String title, String body){
         this.title = title;
         this.body = body;
     }
+
 
 }
