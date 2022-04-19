@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"/>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<header th:replace="partials::header"/>
+<div class="container-fluid">
+	<h1>Fast Food DB</h1>
+</div>
+<br>
+<br>
+<div class="container-fluid">
+	<form action="" method="post">
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="title">Enter Name</span>
+			<input type="text" class="form-control">
+		</div>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="body">Enter Description</span>
+			<input type="text" class="form-control">
+		</div>
+		<button type="submit">Submit</button>
+	</form>
+</div>
+
+<footer th:replace="partials::footer"/>
+</body>
+</html>
