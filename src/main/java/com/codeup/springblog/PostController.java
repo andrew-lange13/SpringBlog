@@ -1,11 +1,9 @@
 package com.codeup.springblog;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -35,15 +33,13 @@ public class PostController {
         return "posts/show";
     }
     @GetMapping("/posts/create")
-    public String createPostGet(){
+    public String createPostGet(Model model){
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
     @PostMapping("/posts/create")
-    public String createPost(Model model){
-        String title = (String) model.getAttribute("title");
-        String body = (String) model.getAttribute("body");
-        Post post = new Post(title, body);
-        model.addAttribute("post", post);
-        return "posts/create";
+    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+        postDao.save(new Post(title, body));
+        return "redirect:/posts";
     }
 }
