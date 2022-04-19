@@ -7,10 +7,10 @@
 </head>
 <body>
 <header th:replace="partials :: header"/>
-
-<h3 th:text="${createdPost.title}"/>
-<p th:text="${createdPost.body}"/>
-
+<div class="container-fluid">
+	<h3 th:text="${createdPost.title}"/>
+	<p th:text="${createdPost.body}"/>
+</div>
 <footer th:replace="partials::footer"/>
 </body>
 </html>
