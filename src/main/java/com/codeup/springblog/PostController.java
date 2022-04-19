@@ -33,13 +33,11 @@ public class PostController {
         return "posts/show";
     }
     @GetMapping("/posts/create")
-    @ResponseBody
     public String createPostGet(){
-        return "This is the create a post get page";
+        return "posts/create";
     }
     @PostMapping("/posts/create")
-    @ResponseBody
     public String createPost(){
-        return "This is the create a post post page";
+        return "posts/create";
     }
 }
