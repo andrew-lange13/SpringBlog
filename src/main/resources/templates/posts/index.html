@@ -8,6 +8,12 @@
 <body>
 <header th:replace="partials::header"/>
 
+<div th:each="post : ${posts}">
+	<h3 th:text="${post.title}"/>
+	<p th:text="${post.body}"/>
+</div>
+
+
 <footer th:replace="partials::footer"/>
 </body>
 </html>
