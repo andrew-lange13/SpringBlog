@@ -20,16 +20,18 @@ public class PostController {
 
     @GetMapping("/posts")
     public String posts(Model model){
-        ArrayList<Post> postsIndex = new ArrayList<>();
-        postsIndex.add(new Post("first", "i like turtles"));
-        postsIndex.add(new Post("second", "if you ain't first you're last"));
-        model.addAttribute("createdIndex", postsIndex);
+//        ArrayList<Post> postsIndex = new ArrayList<>();
+//        postsIndex.add(new Post("first", "i like turtles"));
+//        postsIndex.add(new Post("second", "if you ain't first you're last"));
+//        model.addAttribute("createdIndex", postsIndex);
+        model.addAttribute("createdIndex", postDao.findAll());
         return "posts/index";
     }
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable int id, Model model){
-        Post post = new Post("first", "i like turtles");
-        model.addAttribute("createdPost", post);
+        model.addAttribute("createdPost", postDao.getById(id));
+//        Post post = new Post("first", "i like turtles");
+//        model.addAttribute("createdPost", post);
         return "posts/show";
     }
     @GetMapping("/posts/create")
@@ -37,7 +39,11 @@ public class PostController {
         return "posts/create";
     }
     @PostMapping("/posts/create")
-    public String createPost(){
+    public String createPost(Model model){
+        String title = (String) model.getAttribute("title");
+        String body = (String) model.getAttribute("body");
+        Post post = new Post(title, body);
+        model.addAttribute("post", post);
         return "posts/create";
     }
 }
