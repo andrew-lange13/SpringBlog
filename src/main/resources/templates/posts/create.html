@@ -14,12 +14,14 @@
 <br>
 <div class="container-fluid">
 	<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-		Title:
-		<input th:field="*{title}"/>
-		<br>
-		Description:
-		<input th:field="*{body}">
-		<br>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" th:field="*{title}" id="title" placeholder="fastfood place"/>
+			<label for="title">Title</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" th:field="*{body}" id="description" placeholder="description">
+			<label for="description">Description</label>
+		</div>
 		<button class="btn btn-lg btn-primary" type="submit">Submit</button>
 	</form>
 </div>
