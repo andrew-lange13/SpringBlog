@@ -40,7 +40,7 @@ public class PostController {
     }
     @PostMapping("/posts/create")
     public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        postDao.save(new Post(title, body));
+        postDao.save(new Post(title, body, userDao.getUserById(1)));
         return "redirect:/posts";
     }
 }
