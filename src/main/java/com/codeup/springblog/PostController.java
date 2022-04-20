@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
+
 
     public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
         this.userDao = userDao;
     }
-
-    private final UserRepository userDao;
-
 
     @GetMapping("/posts")
     public String posts(Model model){
@@ -27,7 +26,7 @@ public class PostController {
         return "posts/index";
     }
     @GetMapping("/posts/{id}")
-    public String singlePost(@PathVariable int id, Model model){
+    public String singlePost(@PathVariable long id, Model model){
         model.addAttribute("createdPost", postDao.getById(id));
 //        Post post = new Post("first", "i like turtles");
 //        model.addAttribute("createdPost", post);
