@@ -10,6 +10,7 @@
 <div class="container-fluid">
 	<h3 th:text="${createdPost.title}"/>
 	<p th:text="${createdPost.body}"/>
+	<p th:text="${createdPost.owner.email}"/>
 </div>
 <footer th:replace="partials::footer"/>
 </body>
