@@ -38,20 +38,19 @@ public class PostController {
         return "posts/create";
     }
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        postDao.save(new Post(title, body, userDao.getUserById(1)));
+    public String createPost(Post post){
+        post.setOwner(userDao.getUserById(1));
+        postDao.save(post);
         return "redirect:/posts";
     }
     @GetMapping("/posts/{id}/edit")
     public String getPost(@PathVariable long id, Model model){
-        model.addAttribute("createdPost", postDao.getById(id));
+        model.addAttribute("createdPost", postDao.getPostById(id));
         return "/posts/edit";
     }
 
     @PostMapping("/posts/edit")
-    public String editPost(@ModelAttribute Post post, @RequestParam(name = "title")String title, @RequestParam(name = "body")String body){
-        post.setTitle(title);
-        post.setBody(body);
+    public String editPost(@ModelAttribute Post post){
         postDao.save(post);
         return "redirect:/posts";
     }
