@@ -1,5 +1,6 @@
-package com.codeup.springblog;
+package com.codeup.springblog.models;
 
+import com.codeup.springblog.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
