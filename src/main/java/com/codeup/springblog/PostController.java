@@ -9,11 +9,12 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-
-    public PostController(PostRepository postDao, UserRepository userDao){
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -40,6 +41,7 @@ public class PostController {
     @PostMapping("/posts/create")
     public String createPost(Post post){
         post.setOwner(userDao.getUserById(1));
+        emailService.prepareAndSend(post, "SpringBlog", "You created a post!");
         postDao.save(post);
         return "redirect:/posts";
     }
