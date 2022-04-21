@@ -49,4 +49,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public User(User copy){
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 }
