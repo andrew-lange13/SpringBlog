@@ -8,7 +8,10 @@ import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class PostController {
@@ -45,7 +48,12 @@ public class PostController {
         return "posts/create";
     }
     @PostMapping("/posts/create")
-    public String createPost(Post post){
+    public String createPost(@Valid Post post, Errors validation, Model model){
+        if (validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", post);
+            return "posts/create";
+        }
         post.setOwner((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         emailService.prepareAndSend(post, "SpringBlog", "You created a post!");
         postDao.save(post);
