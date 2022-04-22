@@ -99,6 +99,13 @@ public class PostsIntegrationTests {
                 .andExpect(content().string(containsString(existingPost.getBody())));
     }
 
-//    @Test
-//    public void testPostsIndex
+    @Test
+    public void testPostsIndex()throws Exception{
+        Post existingPost = postsDao.findAll().get(0);
+
+        this.mvc.perform(get("/posts"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("All the Posts")))
+                .andExpect(content().string(containsString(existingPost.getTitle())));
+    }
 }
