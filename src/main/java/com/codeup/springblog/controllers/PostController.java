@@ -66,7 +66,12 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPost(@ModelAttribute Post post){
+    public String editPost(@Valid@ModelAttribute Post post, Errors validation, Model model){
+        if (validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("createdPost", post);
+            return "/posts/edit";
+        }
         post.setOwner((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         postDao.save(post);
         return "redirect:/posts";
