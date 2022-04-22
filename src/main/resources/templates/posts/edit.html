@@ -13,7 +13,7 @@
 <br>
 <br>
 <div class="container-fluid">
-	<form th:action="@{/posts/edit}" th:method="post" th:object="${createdPost}">
+	<form th:action="@{'/posts/' + ${id} + '/edit'}" th:method="post" th:object="${createdPost}">
 		<div th:replace="partials :: createForm"></div>
 		<input th:field="*{id}" hidden>
 		<input th:field="*{owner}" hidden>
