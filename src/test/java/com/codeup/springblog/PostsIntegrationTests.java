@@ -126,4 +126,16 @@ public class PostsIntegrationTests {
                 .andExpect(content().string(containsString("edited title")))
                 .andExpect(content().string(containsString("edited body")));
     }
+
+    @Test
+    public void testDeletePost()throws Exception{
+
+        Post existingPost = postsDao.findPostByTitle("edited title");
+
+        this.mvc.perform(
+                get("/posts/" + existingPost.getId() + "/delete").with(csrf())
+                        .session((MockHttpSession) httpSession)
+                        .param("id", String.valueOf(existingPost.getId())))
+                        .andExpect(status().is3xxRedirection());
+    }
 }
