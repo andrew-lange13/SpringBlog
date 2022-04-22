@@ -151,10 +151,12 @@
 <div th:fragment="createForm">
 	<div class="form-floating mb-3">
 		<input type="text" class="form-control" th:field="*{title}" id="title" placeholder="fastfood place"/>
+		<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
 		<label for="title">Title</label>
 	</div>
 	<div class="form-floating mb-3">
 		<input type="text" class="form-control" th:field="*{body}" id="description" placeholder="description">
+		<p th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></p>
 		<label for="description">Description</label>
 	</div>
 	<button class="btn btn-lg btn-primary" type="submit">Submit</button>
