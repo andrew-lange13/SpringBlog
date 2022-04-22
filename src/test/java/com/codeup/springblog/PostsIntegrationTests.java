@@ -1,5 +1,6 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
@@ -18,10 +19,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.servlet.http.HttpSession;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.matchers.JUnitMatchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBlogApplication.class)
@@ -86,4 +88,17 @@ public class PostsIntegrationTests {
                         .param("body", "testy mcTester"))
                 .andExpect(status().is3xxRedirection());
     }
+
+    @Test
+    public void testShowPost() throws Exception{
+
+        Post existingPost = postsDao.findAll().get(0);
+
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(existingPost.getBody())));
+    }
+
+//    @Test
+//    public void testPostsIndex
 }
