@@ -7,7 +7,7 @@
 </head>
 <body>
 <header th:replace="partials::header"/>
-
+<h1>All the Posts</h1>
 <div class="container-fluid" th:each="post : ${createdIndex}">
 	<h3 th:text="${post.title}"/>
 	<p th:text="${post.body}"/>
