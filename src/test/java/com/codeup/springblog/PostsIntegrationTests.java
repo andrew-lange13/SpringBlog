@@ -5,8 +5,10 @@ import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringBootTest(classes = SpringBlogApplication.class)
 @AutoConfigureMockMvc
 public class PostsIntegrationTests {
@@ -70,17 +73,17 @@ public class PostsIntegrationTests {
     }
 
     @Test
-    public void contextLoads(){
+    public void step1ContextLoads(){
         assertNotNull(mvc);
     }
 
     @Test
-    public void testIfUserSessionIsActive() throws Exception{
+    public void step2TestIfUserSessionIsActive() throws Exception{
         assertNotNull(httpSession);
     }
 
     @Test
-    public void testCreatePost()throws Exception{
+    public void step3TestCreatePost()throws Exception{
         this.mvc.perform(
                 post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
@@ -90,7 +93,7 @@ public class PostsIntegrationTests {
     }
 
     @Test
-    public void testShowPost() throws Exception{
+    public void step4TestShowPost() throws Exception{
 
         Post existingPost = postsDao.findAll().get(0);
 
@@ -100,7 +103,7 @@ public class PostsIntegrationTests {
     }
 
     @Test
-    public void testPostsIndex()throws Exception{
+    public void step5TestPostsIndex()throws Exception{
         Post existingPost = postsDao.findAll().get(0);
 
         this.mvc.perform(get("/posts"))
@@ -110,7 +113,7 @@ public class PostsIntegrationTests {
     }
 
     @Test
-    public void testEditPost()throws Exception{
+    public void step6TestEditPost()throws Exception{
 
         Post existingPost = postsDao.findPostByTitle("title");
 
@@ -128,7 +131,7 @@ public class PostsIntegrationTests {
     }
 
     @Test
-    public void testDeletePost()throws Exception{
+    public void step7TestDeletePost()throws Exception{
 
         Post existingPost = postsDao.findPostByTitle("edited title");
 
