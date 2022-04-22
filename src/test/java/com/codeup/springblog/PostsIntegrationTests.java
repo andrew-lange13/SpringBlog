@@ -84,8 +84,8 @@ public class PostsIntegrationTests {
         this.mvc.perform(
                 post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("title", "test")
-                        .param("body", "testy mcTester"))
+                        .param("title", "title")
+                        .param("body", "body"))
                 .andExpect(status().is3xxRedirection());
     }
 
@@ -112,7 +112,7 @@ public class PostsIntegrationTests {
     @Test
     public void testEditPost()throws Exception{
 
-        Post existingPost = postsDao.findAll().get(0);
+        Post existingPost = postsDao.findPostByTitle("title");
 
         this.mvc.perform(
                 post("/posts/" + existingPost.getId() + "/edit").with(csrf())
