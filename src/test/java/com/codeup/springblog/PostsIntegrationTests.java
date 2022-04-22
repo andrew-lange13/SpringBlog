@@ -108,4 +108,22 @@ public class PostsIntegrationTests {
                 .andExpect(content().string(containsString("All the Posts")))
                 .andExpect(content().string(containsString(existingPost.getTitle())));
     }
+
+    @Test
+    public void testEditPost()throws Exception{
+
+        Post existingPost = postsDao.findAll().get(0);
+
+        this.mvc.perform(
+                post("/posts/" + existingPost.getId() + "/edit").with(csrf())
+                        .session((MockHttpSession) httpSession)
+                        .param("title", "edited title")
+                        .param("body", "edited body"))
+                .andExpect(status().is3xxRedirection());
+
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("edited title")))
+                .andExpect(content().string(containsString("edited body")));
+    }
 }
