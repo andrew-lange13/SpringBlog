@@ -8,10 +8,22 @@
 <body>
 <header th:replace="partials::header"/>
 <h1 class="text-center mb-5">All the Posts</h1>
-<div class="row">
-	<div class="col-xl-3" th:each="post : ${createdIndex}">
-		<h3 th:text="${post.title}"/>
-		<p th:text="${post.body}"/>
+<div class="container-fluid m-5">
+	<div class="row">
+		<div class="col-xl-3" th:each="post : ${createdIndex}">
+			<div class="card m-3" style="width: 15rem">
+				<div class="card-header">
+					<h3 th:text="${post.title}"/>
+				</div>
+				<div class="card-body">
+					<p th:text="${post.body}"/>
+				</div>
+				<div class="text-center">
+					<a href="" class="btn btn-success">Edit</a>
+					<a href="" class="btn btn-danger">Delete</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
