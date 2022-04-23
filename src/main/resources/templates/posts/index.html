@@ -19,7 +19,7 @@
 					<p th:text="${post.body}"/>
 				</div>
 				<div class="text-center">
-					<a href="'/posts/' + ${post.id} + '/edit'" class="btn btn-success">Edit</a>
+					<a th:href="@{'/posts/' + ${post.id} + '/edit'}" class="btn btn-success">Edit</a>
 					<a href="" class="btn btn-danger">Delete</a>
 				</div>
 			</div>
