@@ -8,9 +8,13 @@
 <body>
 <header th:replace="partials :: header"/>
 <div class="container-fluid">
-	<h3 th:text="${createdPost.title}"/>
-	<p th:text="${createdPost.body}"/>
-	<p th:text="${createdPost.owner.email}"/>
+	<div class="row">
+		<div class="col-xl">
+			<h3 th:text="${createdPost.title}"/>
+			<p th:text="${createdPost.body}"/>
+			<p th:text="${createdPost.owner.email}"/>
+		</div>
+	</div>
 </div>
 <footer th:replace="partials::footer"/>
 </body>
