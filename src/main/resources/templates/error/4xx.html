@@ -2,17 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8"/>
-	<title th:text="'Ooops, ' + ${error}"></title>
+	<title>Ooops, Not Found</title>
 </head>
 <body>
-<th:block th:switch="${error}">
-	<div th:case="'Not Found'">
-		<h1>Page not found!!</h1>
-	</div>
-	<div th:case="'Forbidden'">
-		<h1>You don't have permission to view this page.</h1>
-	</div>
-</th:block>
+<h1>Page not found!!</h1>
 <p>Watch a video instead</p>
 <iframe
 		width="420"
