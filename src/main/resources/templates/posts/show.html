@@ -9,10 +9,16 @@
 <header th:replace="partials :: header"/>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-xl">
-			<h3 th:text="${createdPost.title}"/>
-			<p th:text="${createdPost.body}"/>
-			<p th:text="${createdPost.owner.email}"/>
+		<div class="col-xl d-flex justify-content-center">
+			<div class="card m-5" style="width: 50rem">
+				<div class="card-header">
+					<h3 th:text="${createdPost.title}"/>
+				</div>
+				<div class="card-body">
+					<p th:text="${createdPost.body}"/>
+					<p th:text="${createdPost.owner.email}"/>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
